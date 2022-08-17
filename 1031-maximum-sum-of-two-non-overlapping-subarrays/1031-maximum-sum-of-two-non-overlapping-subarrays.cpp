@@ -2,7 +2,6 @@ class Solution {
 public:
     int maxSumTwoNoOverlap(vector<int>& nums, int fln, int sln) {
         int res=INT_MIN;
-        if(fln+sln==nums.size())return accumulate(begin(nums),end(nums),0);
         for(int i=0;i<=nums.size()-sln-fln;++i){
             int sum1=0,sum2=0;
             for(int j=i;j<i+fln;++j){
