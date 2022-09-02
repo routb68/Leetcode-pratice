@@ -15,8 +15,8 @@ public:
     void dfs(TreeNode* root,int x,int y){
         if(root==NULL)return;
         mp[y][x].push_back(root->val);
-        dfs(root->left,x+1,y+1);
-        dfs(root->right,x+1,y-1);
+        dfs(root->left,x+1,y-1);
+        dfs(root->right,x+1,y+1);
     }
     vector<vector<int>> verticalTraversal(TreeNode* root) {
         dfs(root,0,0);
@@ -32,7 +32,7 @@ public:
             }
             res.push_back(ans);
         }
-        reverse(begin(res),end(res));
+        //reverse(begin(res),end(res));
         return res;
     }
 };
