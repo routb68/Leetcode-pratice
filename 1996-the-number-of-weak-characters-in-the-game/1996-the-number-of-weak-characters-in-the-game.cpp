@@ -7,9 +7,9 @@ public:
         });
         int ans=0,max_2nd=0;
         for(int i=pro.size()-1;i>=0;--i){
-           // auto &a=pro[i];
-            if(pro[i][1]<max_2nd)++ans;
-            max_2nd=max(max_2nd,pro[i][1]);
+            auto &a=pro[i];
+            if(a[1]<max_2nd)++ans;
+            max_2nd=max(max_2nd,a[1]);
         }
         return ans;
     }
