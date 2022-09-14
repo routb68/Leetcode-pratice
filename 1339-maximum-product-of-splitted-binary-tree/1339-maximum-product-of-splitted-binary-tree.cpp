@@ -23,11 +23,11 @@ public:
             ans=max(ans,(total-root->val)*root->val);
             return root->val;
         }
-        int left=root->val;
-        left+=com(root->left);
-        left+=com(root->right);
-        ans=max(ans,(total-left)*left);
-        return left;
+        int sum=root->val;
+        sum+=com(root->left);
+        sum+=com(root->right);
+        ans=max(ans,(total-sum)*sum);
+        return sum;
     }
     int maxProduct(TreeNode* root) {
         total=tsum(root);
