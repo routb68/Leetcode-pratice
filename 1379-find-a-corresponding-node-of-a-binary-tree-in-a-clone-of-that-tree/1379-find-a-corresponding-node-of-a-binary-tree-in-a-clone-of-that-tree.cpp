@@ -10,22 +10,18 @@
 
 class Solution {
 public:
-    TreeNode* res;
-    void com(TreeNode* org ,TreeNode* clo,TreeNode* tar){
-        if(org==NULL){
-            return;
-        }
-        if(org->val==tar->val){
-            res=clo;
-            return;
-        }else{
-            com(org->left,clo->left,tar);
-            com(org->right,clo->right,tar);
-        }
-    }
     TreeNode* getTargetCopy(TreeNode* org, TreeNode* clo, TreeNode* tar) {
-        res=NULL;
-        com(org,clo,tar);
-        return res;
+        queue<TreeNode*>q;
+        q.push(clo);
+        while(q.size()){
+            TreeNode* curr=q.front();
+            q.pop();
+            if(curr->val==tar->val){
+                return curr;
+            }
+            if(curr->left!=NULL) q.push(curr->left);
+            if(curr->right!=NULL) q.push(curr->right);
+        }
+        return NULL;
     }
 };
