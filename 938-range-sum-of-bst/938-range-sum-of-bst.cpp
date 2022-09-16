@@ -11,19 +11,16 @@
  */
 class Solution {
 public:
+    int res;
+    void com(TreeNode* root,int low,int high){
+        if( root==NULL ) return;
+        if(root->val>=low and root->val<=high) res+=root->val;
+        com(root->left,low,high);
+        com(root->right,low,high);
+    }
     int rangeSumBST(TreeNode* root, int low, int high) {
-        int res=0;
-        queue<TreeNode*>q;
-        q.push(root);
-        while(q.size()){
-            TreeNode* curr=q.front();
-            q.pop();
-            if(curr->val>=low and curr->val<=high){
-                res+=curr->val;
-            }
-            if(curr->left!=NULL) q.push(curr->left);
-            if(curr->right!=NULL) q.push(curr->right);
-        }
+        res=0;
+        com(root,low,high);
         return res;
     }
 };
