@@ -9,7 +9,6 @@ public:
                     dp[i][j]=1+dp[i-1][j-1];
                 }
                 res=max(dp[i][j],res);
-                //cout<<dp[i][j]<<" ";
             }
             cout<<endl;
         }
