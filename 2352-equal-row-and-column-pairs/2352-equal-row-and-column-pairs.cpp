@@ -1,18 +1,12 @@
 class Solution {
 public:
     int equalPairs(vector<vector<int>>& gd) {
-        map<vector<int>,int>ump;
-        for(int i=0;i<gd.size();++i){
-            ump[gd[i]]++;
-        }
-        int ans=0;
-        for(int i=0;i<gd[0].size();++i){
-            vector<int>v;
-            for(int j=0;j<gd.size();++j){
-                v.push_back(gd[j][i]);
-            }
-            if(ump.find(v)!=ump.end()){
-                ans+=ump[v];
+        int n = gd.size(),ans=0;
+        for(int i=0;i<n;++i){
+            for(int j=0;j<n;++j){
+                int k=0;
+                while(k<n and gd[k][i]==gd[j][k])++k;
+                if(k==n) ++ans;
             }
         }
         return ans;
