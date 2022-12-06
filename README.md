@@ -1,2 +1,3 @@
-# Leetcode-pratice
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+# LC-Practice
+
+My LeetCode Solutions along with Time Taken (% Percentile) Space Taken (% Percentile)
