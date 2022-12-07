@@ -11,15 +11,17 @@
  */
 class Solution {
 public:
-    int ans;
-    void dfs(TreeNode* root,int low,int high){
-        if(root->val>=low and root->val<=high) ans+=root->val;
-        if(root->left) dfs(root->left,low,high);
-        if(root->right) dfs(root->right,low,high);
-    }
     int rangeSumBST(TreeNode* root, int low, int high) {
-        ans=0;
-        dfs(root,low,high);
+        queue<TreeNode*>q;
+        q.push(root);
+        int ans=0;
+        while(q.size()){
+            TreeNode* curr=q.front();
+            q.pop();
+            if(curr->val<=high and curr->val>=low) ans+=curr->val;
+            if(curr->left) q.push(curr->left);
+            if(curr->right) q.push(curr->right);
+        }
         return ans;
     }
 };
