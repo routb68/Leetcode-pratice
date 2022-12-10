@@ -11,28 +11,24 @@
  */
 class Solution {
 public:
-    long long ans,total;
-    int mod=1e9+7;
-    int tsum(TreeNode* root){
-        if(root==NULL)return 0;
-        return root->val+tsum(root->left)+tsum(root->right);
+    int64_t sum,pro;
+    int64_t mod=1e9+7;
+    void dfssum(TreeNode* root){
+        if(root) sum+=root->val;
+        else return;
+        dfssum(root->left);
+        dfssum(root->right);
     }
-    int com(TreeNode* root){
+    int mapro(TreeNode* root){
         if(root==NULL) return 0;
-        if(root->left==NULL and root->right==NULL){
-            ans=max(ans,(total-root->val)*root->val);
-            return root->val;
-        }
-        int sum=root->val;
-        sum+=com(root->left);
-        sum+=com(root->right);
-        ans=max(ans,(total-sum)*sum);
-        return sum;
+        int64_t x= mapro(root->left)+ mapro(root->right)+root->val;
+        pro=max(pro , ((sum-x)*(x)));
+        return x;
     }
     int maxProduct(TreeNode* root) {
-        total=tsum(root);
-        ans=INT_MIN;
-        com(root);
-        return ans%mod;
+        sum=0,pro=INT_MIN;
+        dfssum(root);
+        mapro(root);
+        return pro % mod;
     }
 };
