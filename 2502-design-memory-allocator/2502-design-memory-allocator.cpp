@@ -16,6 +16,10 @@ public:
            int res=0;
             for(int j=i;j<v.size() and j<i+size;++j){
                 if(v[j]==0)++res;
+                else {
+                    i=j;
+                    break;
+                }
             }
             if(res==size){
                 for(int j=i;j<v.size() and j<i+size;++j) v[j]=mID;
