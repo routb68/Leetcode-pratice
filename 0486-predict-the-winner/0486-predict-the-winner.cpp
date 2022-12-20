@@ -1,17 +1,16 @@
 class Solution {
 public:
     int dp[21][21];
-    int com(vector<int>&v,int a,int b,bool p){
-        if(a==b) return v[a];
-        if(a>b) return -1;
-        if(dp[a][b]==-1){
-            if(p){
-                dp[a][b]=max(v[a]+com(v,a+1,b,0), v[b]+com(v,a,b-1,0));
-            }else{
-                dp[a][b]=min(-v[a]+com(v,a+1,b,1), -v[b]+com(v,a,b-1,1));
-            }
+    int com(vector<int>&v,int l,int r,bool p){
+        if(l>r) return 0;
+        if(l==r) return v[l];
+        if(dp[l][r]==-1){
+            if(p)
+                dp[l][r]=max(v[l]+com(v,l+1,r,false),v[r]+com(v,l,r-1,false));
+            else
+                dp[l][r]=min(-v[l]+com(v,l+1,r,true),-v[r]+com(v,l,r-1,true));
         }
-        return dp[a][b];
+        return dp[l][r];
     }
     bool PredictTheWinner(vector<int>& nums) {
         for(int i=0;i<21;++i){
@@ -19,6 +18,6 @@ public:
                 dp[i][j]=-1;
             }
         }
-        return com(nums,0,nums.size()-1,1)>=0;
+        return com(nums,0,nums.size()-1,true)>=0;
     }
 };
