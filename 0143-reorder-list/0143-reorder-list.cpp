@@ -11,27 +11,23 @@
 class Solution {
 public:
     void reorderList(ListNode* head) {
-        deque<int>dq;
+        if(head->next==nullptr or head->next->next==nullptr) return;
+        stack<ListNode*>s;
+        int n=0;
         ListNode* curr=head;
-        int a=0;
         while(curr){
-            dq.push_back(curr->val);
+            s.push(curr);
+            ++n;
             curr=curr->next;
         }
         curr=head;
-        while(curr){
-            int x;
-            if(a%2==0){
-                x=dq.front();
-                dq.pop_front();
-            }else{
-                x=dq.back();
-                dq.pop_back();
-            }
-            curr->val=x;
-            ++a;
-            curr=curr->next;
+        for(int i=0;i<n/2;++i){
+            ListNode* temp=s.top();
+            s.pop();
+            temp->next=curr->next;
+            curr->next=temp;
+            curr=curr->next->next;
         }
-        
+        curr->next=nullptr;
     }
 };
