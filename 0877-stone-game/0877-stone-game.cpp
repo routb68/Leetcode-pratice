@@ -9,7 +9,7 @@ public:
             return ump[l][r];
         }
         if(um[l][r]==-1)
-        um[l][r]=max(-v[l]+com(v,l+1,r,1),-v[r]+com(v,l,r-1,0));
+        um[l][r]=max(-v[l]+com(v,l+1,r,1),-v[r]+com(v,l,r-1,1));
         return um[l][r];
     }
     bool stoneGame(vector<int>&v) {
