@@ -15,7 +15,7 @@ public:
                 ++i;
             }
             auto [x,y]=pq.top();
-            cout<<x<<" "<<y<<endl;
+            //cout<<x<<" "<<y<<endl;
             pq.pop();
             time+=x;
             ans.push_back(y);
