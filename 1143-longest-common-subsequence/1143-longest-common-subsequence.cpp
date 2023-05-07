@@ -1,21 +1,19 @@
 class Solution {
 public:
-    vector<unordered_map<int,int>>ump;
-    int cum(string &t1,string &t2,int a,int b){
-        if(ump[a].find(b)==ump[a].end()){
-            if(a==0  or b==0) return 0;
-            int x;
-        if(t1[a-1]==t2[b-1]) x= 1+ cum(t1,t2,a-1,b-1);
-        else{
-            x= max(cum(t1,t2,a-1,b),cum(t1,t2,a,b-1));
+    int longestCommonSubsequence(string s1, string s2) {
+        int n= s1.length(),m=s2.length();
+        int dp[n+1][m+1];
+        for(int i=0;i<=n;++i) dp[i][0]=0;
+        for(int j=1;j<=m;++j) dp[0][j]=0;
+        for(int i=1;i<=n;++i){
+            for(int j=1;j<=m;++j){
+                if(s1[i-1]==s2[j-1]){
+                    dp[i][j]=1+dp[i-1][j-1];
+                }else{
+                    dp[i][j]= max(dp[i-1][j], dp[i][j-1]);
+                }
+            }
         }
-        ump[a][b]=x;
-        }
-        return ump[a][b];
-    }
-    int longestCommonSubsequence(string t1, string t2) {
-        int cnt=0;
-        ump.resize(t1.length()+2);
-        return cum(t1,t2,t1.length(),t2.length());
+        return dp[n][m];
     }
 };
