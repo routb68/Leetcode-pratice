@@ -1,22 +1,36 @@
 class Solution {
 public:
-    int minDistance(string s1, string s2) {
-        int dp[s1.length()+1][s2.length()+1];
-        for(int i=0;i<=s1.length();++i){
-            dp[i][0]=i;
+	int dp[505][505];
+	int go(string s1, string s2, int n, int m) {
+		int res;
+		if (dp[n][m] == -1) {
+            if(n==0) res=m;
+            else if (m==0) res=n;
+            else if (s1[n - 1] == s2[m - 1])
+				res = go(s1, s2, n - 1, m - 1);
+			else
+				res = 1 + min({go(s1, s2, n - 1, m),go(s1, s2, n - 1, m - 1),
+                              go(s1, s2, n, m - 1)});
+		}else{
+            return dp[n][m];
         }
-        for(int i=0;i<=s2.length();++i){
-            dp[0][i]=i;
-        }
-        for(int i=1;i<=s1.length();++i){
-            for(int j=1;j<=s2.length();++j){
-                if(s1[i-1]==s2[j-1]){
-                    dp[i][j]=dp[i-1][j-1];
-                }else{
-                    dp[i][j]=1+min({dp[i][j-1],dp[i-1][j],dp[i-1][j-1]});
-                }
+		return dp[n][m] = res;
+	}
+	int minDistance(string word1, string word2) {
+		for (int i = 0; i < 505; ++i) {
+			for (int j = 0; j < 505; ++j) {
+				dp[i][j] = -1;
+			}
+		}
+        for(int i=0;i<505;++i) dp[i][0]=i;
+        for(int i=0;i<505;++i) dp[0][i]=i;
+        int ans =go(word1, word2, word1.length(), word2.length());
+        for(int i=0;i<=word1.length();++i){
+            for(int j=0;j<=word2.length();++j){
+                cout<<dp[i][j]<<" ";
             }
+            cout<<endl;
         }
-        return dp[s1.length()][s2.length()];
-    }
+		return ans;
+	}
 };
