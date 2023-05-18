@@ -11,6 +11,7 @@ public:
                     break;
                 }
             }
+            if(dp[i]==false) return false;
         }
         return dp[nums.size()-1];
     }
