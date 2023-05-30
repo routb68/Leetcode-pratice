@@ -11,18 +11,22 @@
  */
 class Solution {
 public:
-    map<int,int>us;
+    unordered_map<int,int>us;
+    int a;
     void go(TreeNode* root,int i){
         if(root==NULL) return;
+        a=max(a,i);
         go(root->left,i+1);
         us[i]=root->val;
         go(root->right,i+1);
     }
     vector<int> rightSideView(TreeNode* root) {
+        a=-1;
         go(root,0);
         vector<int>v;
-        for (auto i = us.begin(); i != us.end(); i++)
-         v.push_back(i->second);
+        for(int i=0;i<=a;++i){
+            v.push_back(us[i]);
+        }
         return v;
     }
 };
