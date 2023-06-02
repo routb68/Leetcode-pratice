@@ -1,13 +1,14 @@
 class Solution {
 public:
+    int dp[105];
+    int go(vector<int>&v,int idx){
+        if(dp[idx]!=-1) return dp[idx];
+        if(idx==1) return dp[idx]=v[0];
+        if(idx==2) return dp[idx]=max(v[0],v[1]);
+        return dp[idx]=max(go(v,idx-1),go(v,idx-2)+v[idx-1]);
+    }
     int rob(vector<int>& nums) {
-        if(nums.size()<2) return nums[0];
-        int dp[nums.size()];
-        dp[0]=nums[0];
-        dp[1]=max(nums[1],nums[0]);
-        for(int i=2;i<nums.size();++i){
-            dp[i]=max(dp[i-1],dp[i-2]+nums[i]);
-        }
-        return dp[nums.size()-1];
+        for(int i=0;i<105;++i)dp[i]=-1;
+        return go(nums,nums.size());
     }
 };
