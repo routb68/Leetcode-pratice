@@ -1,18 +1,20 @@
 class Solution {
 public:
-    int dp[505][505];
-    int go(string s1,string s2,int m,int n){
-        if(dp[m][n]!=-1) return dp[m][n];
-        if(m==0 or n==0) return dp[m][n]=max(m,n);
-        if(s1[m-1]==s2[n-1]) return dp[m][n]=go(s1,s2,m-1,n-1);
-        return dp[m][n]=1+min({go(s1,s2,m-1,n),go(s1,s2,m,n-1),go(s1,s2,m-1,n-1)});
-    }
-    int minDistance(string word1, string word2) {
-        for(int i=0;i<505;++i){
-            for(int j=0;j<505;++j){
-                dp[i][j]=-1;
+    int minDistance(string s1, string s2) {
+        int n=s1.length(),m=s2.length();
+        int dp[n+1][m+1];
+        dp[0][0]=0;
+        for(int i=0;i<=n;++i) dp[i][0]=i;
+        for(int j =0;j<=m;++j) dp[0][j]=j;
+        for(int i=1;i<=n;++i){
+            for(int j=1;j<=m;++j){
+                if(s1[i-1]==s2[j-1])
+                    dp[i][j]= dp[i-1][j-1];
+                else
+                    dp[i][j]=1+min({dp[i-1][j],dp[i][j-1],dp[i-1][j-1]});
+                    
             }
         }
-        return go (word1,word2,word1.size(),word2.size());
+        return dp[n][m];
     }
 };
