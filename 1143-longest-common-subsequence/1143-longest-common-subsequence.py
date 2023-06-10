@@ -3,7 +3,8 @@ class Solution:
         m=len(t1)
         n=len(t2)
         # dp = [[0]*(m+1)]*(n+1);
-        dp = [[0]*(m+1) for x in range(n+1)]
+        # dp = [[0]*(m+1) for x in range(n+1)]
+        dp = [[0 for y in range (m+1) ] for x in range(n+1) ]
         for i in range(1,n+1):
             for j in range (1,m+1):
                 if(t2[i-1]==t1[j-1]):
