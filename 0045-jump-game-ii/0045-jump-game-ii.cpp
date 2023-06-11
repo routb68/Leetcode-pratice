@@ -1,18 +1,20 @@
 class Solution {
 public:
     int jump(vector<int>& nums) {
-        int dp[nums.size()];
-        dp[0]=0;
-        for (int i=1;i<nums.size();++i){
-            dp[i]=INT_MAX;
-            for(int j=0;j<i;++j){
-                if(dp[j]!=INT_MAX and nums[j]+j>=i){
-                    dp[i]=min(dp[i],dp[j]+1);
-                }
+        if(nums.size()<2) return 0;
+        int pos=0,can_reach=0,jump=0;
+        while(true){
+            int max_reach=pos;
+            for(int i=pos;i<=can_reach;++i){
+                max_reach = max(max_reach,i+nums[i]);
             }
-            // cout<<dp[i]<<" ";
+            ++jump;
+            if(max_reach>=nums.size()-1){
+                return jump;
+            }
+            pos=can_reach+1;
+            can_reach=max_reach;
         }
-        if(dp[nums.size()-1]==INT_MAX) return -1;
-        return dp[nums.size()-1];
+        return 0;
     }
 };
