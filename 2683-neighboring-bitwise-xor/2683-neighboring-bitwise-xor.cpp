@@ -1,8 +1,9 @@
 class Solution {
 public:
-    bool doesValidArrayExist(vector<int>& d) {
-        int a=d[0];
-        for(int i=1;i<d.size();++i) a^=d[i];
+    bool doesValidArrayExist(vector<int>& dd) {
+        int a =0;
+        for(int &x:dd) a^=x;
         return a==0;
+        
     }
 };
