@@ -18,6 +18,9 @@ public:
 		return false;
 	}
 	bool makesquare(vector<int> &mt) {
+        long long d=0;
+        for(int &x:mt)d+=x;
+        if(d%4) return false;
 		int n = 1 << mt.size();
 		vector<int> v1, v2;
 		for (int i = 0; i <= n; ++i) {
