@@ -5,6 +5,7 @@ public:
     void go(int n,int pos){
         if(pos>n){
             res+=1;
+            return ;
         }
         for(int i=1;i<=n;++i){
             if(seen[i]==false and (i%pos==0 or pos%i==0)){
