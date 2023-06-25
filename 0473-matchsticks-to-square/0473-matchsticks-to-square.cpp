@@ -34,7 +34,7 @@ public:
 					b += mt[j];
 				}
 			}
-			if (a == b) {
+			if (a == b and a%2==0) {
 				bool flag1 = go(v1), flag2 = go(v2);
 				if (flag1 and (flag1 == flag2)) return true;
 			}
