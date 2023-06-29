@@ -7,15 +7,15 @@ public:
             if(k==dist) return 1;
             return 0;
         }
-        if(dp[k][dist]==0){
-            dp[k][dist] = (1+ go(k-1,dist+1)+go(k-1,abs(dist-1)))%mod;
+        if(dp[k][dist]==-1){
+            dp[k][dist] = ( go(k-1,dist+1)+go(k-1,abs(dist-1)))%mod;
         }
-        return dp[k][dist]-1;
+        return dp[k][dist];
     }
     int numberOfWays(int startPos, int endPos, int k) {
         for(int i=0;i<1001;++i)
             for (int j=0;j<1001;++j)
-                dp[i][j]=0;
+                dp[i][j]=-1;
         return go(k,abs(startPos-endPos));
     }
 };
