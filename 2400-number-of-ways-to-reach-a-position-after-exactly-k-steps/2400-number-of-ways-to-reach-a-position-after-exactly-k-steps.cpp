@@ -2,7 +2,7 @@ class Solution {
 public:
     unordered_map<int,long long>ump[1001];
     const long long mod = 1e9+7;
-    int go(int a,int b,int c){
+    long long go(int a,int b,int c){
         if(ump[c].find(a)!=ump[c].end())
             return ump[c][a];
         if(c==0){
