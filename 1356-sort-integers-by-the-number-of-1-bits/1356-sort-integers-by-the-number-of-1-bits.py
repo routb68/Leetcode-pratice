@@ -1,15 +1,16 @@
 class Solution:
-    def sortByBits(self, arr: List[int]) -> List[int]:
-        temp = []
-        for i in range(len(arr)):
-            cnt = 0
-            num = arr[i]
-            while(num):
-                if ( num & 1):
-                    cnt+=1
-                num = num>>1
-            temp.append([cnt,arr[i]])
-        temp.sort()
-        for i in range(len(arr)):
-            arr[i]= temp[i][1]
-        return arr
+    def sortByBits(self, arr: List[int]) -> List[int]:              
+        def count_ones(n):
+            count = 0
+            for i in range(14):
+                if (n & (1<<i)):
+                    count+=1
+            return count
+        lst = [];
+        for i in arr:
+            lst.append([count_ones(i),i])
+        lst.sort()
+        ans = []
+        for i in range(len(lst)):
+            ans.append(lst[i][1])
+        return ans
