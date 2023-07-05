@@ -14,6 +14,7 @@ public:
             temp[i]+=c[idx];
             go(c,temp,idx+1);
             temp[i]-=c[idx];
+            if(temp[i]==0)break;
         }
         
     }
