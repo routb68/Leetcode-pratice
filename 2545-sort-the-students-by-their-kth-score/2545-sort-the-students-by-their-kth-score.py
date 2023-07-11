@@ -4,9 +4,9 @@ class Solution:
         for i in range(len(scr)):
             temp.append([scr[i][k],i])
             # print(scr[i][k])
-        temp.sort(reverse=True)
+        temp.sort()
         # print(temp)
         res = []
-        for i in range(len(temp)):
+        for i in  reversed(range(len(temp))):
             res.append(scr[temp[i][1]])
         return res
