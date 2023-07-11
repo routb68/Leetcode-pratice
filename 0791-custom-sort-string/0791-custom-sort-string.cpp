@@ -1,7 +1,7 @@
 class Solution {
 public:
     string customSortString(string order, string s) {
-        unordered_map<char,int>ump;
+        map<char,int>ump;
         for(char&x:s)
             ++ump[x];
         vector<int>v(26,0);
