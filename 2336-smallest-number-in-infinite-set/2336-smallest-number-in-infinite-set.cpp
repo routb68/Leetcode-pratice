@@ -1,6 +1,6 @@
 class SmallestInfiniteSet {
 public:
-    unordered_set<int>us;
+    set<int>us;
     SmallestInfiniteSet() {
         for(int i=1;i<1001;++i){
             us.insert(i);
