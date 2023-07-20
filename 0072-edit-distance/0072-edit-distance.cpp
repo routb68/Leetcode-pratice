@@ -1,20 +1,20 @@
 class Solution {
 public:
-    int minDistance(string s1, string s2) {
-        int n=s1.length(),m=s2.length();
-        int dp[n+1][m+1];
-        dp[0][0]=0;
-        for(int i=0;i<=n;++i) dp[i][0]=i;
-        for(int j =0;j<=m;++j) dp[0][j]=j;
-        for(int i=1;i<=n;++i){
-            for(int j=1;j<=m;++j){
-                if(s1[i-1]==s2[j-1])
-                    dp[i][j]= dp[i-1][j-1];
-                else
-                    dp[i][j]=1+min({dp[i-1][j],dp[i][j-1],dp[i-1][j-1]});
-                    
-            }
+    map<pair<int,int>,int>us;
+    int com(string s1,string s2,int m,int n){
+        if(us.find(make_pair(m,n))!=us.end())
+            return us[make_pair(m,n)];
+        if(n==0)
+            return us[make_pair(m,n)]=m;
+        if(m==0)
+            return us[make_pair(m,n)]=n;
+        if(s1[m-1]==s2[n-1]){
+            return us[make_pair(m,n)]=com(s1,s2,m-1,n-1);
+        }else{
+            return us[make_pair(m,n)]= 1 + min({com(s1,s2,m-1,n),com(s1,s2,m-1,n-1),com(s1,s2,m,n-1)});
         }
-        return dp[n][m];
+    }
+    int minDistance(string word1, string word2) {
+        return com(word1,word2,word1.length(),word2.length());
     }
 };
