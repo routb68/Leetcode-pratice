@@ -1,12 +1,7 @@
-class Solution {
-public:
-    int largestPerimeter(vector<int>& nums) {
-        sort(begin(nums),end(nums));
-        for(int i=nums.size()-3;i>=0;--i){
-            if(nums[i]+nums[i+1]>nums[i+2]){
-                return nums[i]+nums[i+1]+nums[i+2];
-            }
-        }
-        return 0;
-    }
-};
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        nums.sort()
+        for i in reversed(range(len(nums)-2)):
+            if nums[i]+nums[i+1] > nums[i+2]:
+                return nums[i]+nums[i+1]+nums[i+2]
+        return 0
