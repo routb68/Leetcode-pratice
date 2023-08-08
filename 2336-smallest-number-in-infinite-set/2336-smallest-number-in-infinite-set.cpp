@@ -1,16 +1,14 @@
 class SmallestInfiniteSet {
 public:
-    set<int>us;
+    bool arr[1001];
     SmallestInfiniteSet() {
-        for(int i=1;i<1001;++i){
-            us.insert(i);
-        }
+        for(int i=1;i<1001;++i)arr[i]=true;
     }
     
     int popSmallest() {
-        for(int i=0;i<1001;++i){
-            if(us.find(i)!=us.end()){
-                us.erase(i);
+        for(int i=1;i<1001;++i){
+            if(arr[i]==true){
+                arr[i]=false;
                 return i;
             }
         }
@@ -18,7 +16,7 @@ public:
     }
     
     void addBack(int num) {
-        us.insert(num);
+        arr[num]=true;
     }
 };
 
