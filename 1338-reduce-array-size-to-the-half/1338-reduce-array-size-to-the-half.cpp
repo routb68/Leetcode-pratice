@@ -1,25 +1,21 @@
 class Solution {
 public:
-    struct myComp{
-        bool operator()(pair<int,int>&a,pair<int,int>&b){
-            return a.second<b.second;
-        }
-    };
     int minSetSize(vector<int>& arr) {
+        priority_queue<pair<int,int>>pq;
         unordered_map<int,int>ump;
-        for(int &x:arr)
-            ++ump[x];
-        priority_queue<pair<int,int>,vector<pair<int,int>>,
-                           myComp>pq(ump.begin(),ump.end());
-        int sum=0,cnt=0;
+        for(int &x:arr)++ump[x];
+        for(auto [x,y]:ump){
+            pq.push(make_pair(y,x));
+        }
+        int ans=0,cnt=0;
         while(pq.size()){
-            sum+=pq.top().second;
+            auto x = pq.top();pq.pop();
+            ans +=x.first;
             ++cnt;
-            pq.pop();
-            if(sum>=(arr.size()/2)){
-                return cnt;
+            if(ans>=(arr.size()/2)){
+                break;
             }
         }
-        return -1;
+        return cnt;
     }
 };
