@@ -1,16 +1,16 @@
 class Solution {
 public:
     int deleteGreatestValue(vector<vector<int>>& grid) {
-        for(int i=0;i<grid.size();++i){
-            sort(begin(grid[i]),end(grid[i]));
+        for (auto &x:grid){
+            sort(begin(x),end(x));
         }
         int ans=0;
         for(int i=0;i<grid[0].size();++i){
-            int res=INT_MIN;
+            priority_queue<int>pq;
             for(int j=0;j<grid.size();++j){
-                res=max(res,grid[j][i]);
+                pq.push(grid[j][i]);
             }
-            ans+=res;
+            ans += pq.top();
         }
         return ans;
     }
