@@ -1,21 +1,28 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        unordered_map<char,int>ump;
+        priority_queue<pair<int,char>>pq;
+        int arr[260];
+        char k = '0';
+        for(int i=0;i<260;++i){
+          arr[i]=0;
+        }
         for(char &x:s){
-            ++ump[x];
+            ++arr[x-'0'];
         }
-        vector<pair<int,char>>v;
-        for(auto [x,y]:ump){
-            v.emplace_back(make_pair(y,x));
+        for(int i = 0 ;i<260;++i){
+            if(arr[i]){
+                pq.push(make_pair(arr[i],k));
+            }
+            k+=1;
         }
-        sort(begin(v),end(v));
-        string res;
-        for(int i=v.size()-1;i>=0;--i){
-            for(int j=0;j<v[i].first;++j){
-                res+=v[i].second;
+        string s1;
+        while(pq.size()){
+            auto x = pq.top();pq.pop();
+            while(x.first--){
+                s1+=x.second;
             }
         }
-        return res;
+        return s1;
     }
 };
