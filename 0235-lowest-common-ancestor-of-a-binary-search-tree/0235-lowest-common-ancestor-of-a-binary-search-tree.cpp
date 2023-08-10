@@ -10,29 +10,30 @@
 
 class Solution {
 public:
+    vector<vector<TreeNode*>>ans;
+    void com(TreeNode* root,TreeNode* temp,vector<TreeNode*>v){
+        if(root==NULL){
+            return ;
+        }
+        if(root==temp){
+            v.push_back(temp);
+            ans.push_back(v);
+            return ;
+        }
+        v.push_back(root);
+        com(root->left,temp,v);
+        com(root->right,temp,v);
+    }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        TreeNode* curr=root;
-        vector<TreeNode*>vp,vq;
-        while(curr->val!=p->val){
-            vp.push_back(curr);
-            if(curr->val>p->val) curr=curr->left;
-            else if(curr->val<p->val)curr=curr->right;
+        vector<TreeNode*>v;
+        com(root,p,v);
+        v.clear();
+        com(root,q,v);
+        int n = min(ans[0].size(),ans[1].size());
+        for(int i=1;i<n;++i){
+            if(ans[0][i]!=ans[1][i])
+                return ans[0][i-1];
         }
-        vp.push_back(curr);
-        curr=root;
-        while(curr->val!=q->val){
-            vq.push_back(curr);
-            if(curr->val>q->val) curr=curr->left;
-            else if(curr->val<q->val)curr=curr->right;
-        }
-        vq.push_back(curr);
-        TreeNode* pre=root;
-        int i=0,j=0;
-        while(i<vp.size() and j<vq.size() and vp[i]==vq[j]){
-            pre=vp[i];
-            ++i;
-            ++j;
-        }
-        return vp[i-1];
+        return ans [0][n-1];
     }
 };
