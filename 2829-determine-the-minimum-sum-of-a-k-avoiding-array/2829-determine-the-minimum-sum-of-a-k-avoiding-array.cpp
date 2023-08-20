@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minimumSum(int n, int k) {
-        set<int>us;
+        unordered_set<int>us;
         int i =1;
         int ans=0;
         while(n--){
