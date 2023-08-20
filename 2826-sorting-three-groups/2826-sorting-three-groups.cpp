@@ -8,7 +8,7 @@ public:
                 v.push_back(nums[i]);
             }else{
                 int idx = upper_bound(begin(v),end(v),nums[i])-v.begin();
-                 cout<<idx<<endl;
+                 // cout<<idx<<endl;
                 v[idx]=nums[i];
             }
         }
