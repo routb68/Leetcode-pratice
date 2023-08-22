@@ -1,20 +1,20 @@
 class Solution {
 public:
-    vector<string>ans;
-    void go(int l,int r,int n,string s){
-        if(l<r or l>n){
+    vector<string> ans;
+    void com(int n,string s,int l,int r){
+        if(l==n and r==n){
+            ans.push_back(s);
             return;
         }
-        if(l==r and l==n){
-            ans.push_back(s);
-            return ;
-        }
-        go(l+1,r,n,s+'(');
-        go(l,r+1,n,s+')');
+        if(l>n or r>l)return;
+        if(r>n) return;
+        com(n,s+'(',l+1,r);
+        com(n,s+')',l,r+1);
     }
     vector<string> generateParenthesis(int n) {
         ans.clear();
-        go(0,0,n,"");
+        string s;
+        com(n,s,0,0);
         return ans;
     }
 };
