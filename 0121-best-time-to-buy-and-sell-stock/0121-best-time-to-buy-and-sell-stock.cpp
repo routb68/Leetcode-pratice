@@ -1,10 +1,13 @@
 class Solution {
 public:
-    int maxProfit(vector<int>& v) {
-        int ans =0;int temp =v[0];
-        for(int i=1;i<v.size();++i){
-            temp = min(temp,v[i]);
-            ans = max(ans,v[i]-temp);
+    int maxProfit(vector<int>& ps) {
+        int n=ps.size();
+        // int arr[n];
+        int ans=0;
+        int temp_min = ps[0];
+        for( int i=0;i<n;++i){
+            temp_min = min(temp_min,ps[i]);
+            ans = max( ans,ps[i]-temp_min);
         }
         return ans;
     }
