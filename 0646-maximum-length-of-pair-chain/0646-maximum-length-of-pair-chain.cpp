@@ -13,6 +13,7 @@ public:
             for( int j=i-1;j>=0;--j){
                 if(ps[i][0]>ps[j][1]){
                     arr[i]= max(arr[i],arr[j]+1);
+                    break;
                 }
             }
         }
