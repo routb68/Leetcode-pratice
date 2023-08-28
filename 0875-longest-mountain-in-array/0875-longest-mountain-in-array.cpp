@@ -14,7 +14,7 @@ public:
                 }else if(dow==true){
                     ++cnt;
                 }else{
-                     if(dow==true)ans = max(ans,cnt);
+                    //  if(dow==true)ans = max(ans,cnt);
                     cnt=0;
                     up = false;
                     dow=false;
