@@ -1,8 +1,8 @@
 class Solution {
 public:
-    unordered_map<int,int>ump;
+    int dp[1001];
     int go(vector<int>& nums,int t){
-        if(ump.find(t)!=ump.end()) return ump[t];
+        if(dp[t]!=-1) return dp[t];
         if(t==0){
             return 1 ;
         }
@@ -12,9 +12,12 @@ public:
                 ans += go(nums,t-nums[i]);
             }
         }
-        return ump[t]=ans;
+        return dp[t]=ans;
     }
     int combinationSum4(vector<int>& nums, int t) {
+        for(int i=0;i<t+2;++i){
+            dp[i]=-1;
+        }
         return go(nums,t);
     }
 };
