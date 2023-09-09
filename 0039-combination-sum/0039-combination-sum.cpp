@@ -1,23 +1,24 @@
 class Solution {
 public:
-    vector<vector<int>> res;
-    void go(vector<int>&cds,vector<int>&v,int tar,int idx){
-        if(tar<0) return;
-        if(tar==0){
-            res.emplace_back(v);
+    vector<vector<int>>ans;
+    void go(vector<int>&cs,int tar,int idx,vector<int>&temp){
+        if(idx==0){
+            if(tar==0){
+                ans.push_back(temp);
+            }
             return;
         }
-        for(int i=idx;i<cds.size();++i){
-            v.push_back(cds[i]);
-            go(cds,v,tar-cds[i],i);
-            v.pop_back();
+        if(tar>=cs[idx-1]){
+            temp.push_back(cs[idx-1]);
+            go(cs,tar-cs[idx-1],idx,temp);
+            temp.pop_back();
         }
+        go(cs,tar,idx-1,temp);
     }
-    vector<vector<int>> combinationSum(vector<int>& cds, int tar) {
-        res.clear();
+    vector<vector<int>> combinationSum(vector<int>& cs, int t) {
+        ans.clear();
         vector<int>v;
-        sort(begin(cds),end(cds));
-        go(cds,v,tar,0);
-        return res;
+        go(cs,t,cs.size(),v);
+        return ans;
     }
 };
