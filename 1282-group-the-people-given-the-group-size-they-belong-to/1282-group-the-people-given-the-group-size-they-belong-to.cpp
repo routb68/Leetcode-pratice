@@ -1,19 +1,20 @@
 class Solution {
 public:
     vector<vector<int>> groupThePeople(vector<int>& gs) {
-        int n=gs.size();
-         vector<vector<int>>v(n+1),ans;
-        for(int i=0;i<n;++i){
+        vector<int> v[501];
+        for(int i=0;i<gs.size();++i){
             v[gs[i]].push_back(i);
         }
-        for(int i=0;i<=n;++i){
-            if(v[i].size()==0) continue;
-            vector<int>res;
-            for(int &x:v[i]){
-                res.push_back(x);
-                if(res.size()==i){
-                    ans.push_back(res);
-                    res.clear();
+        vector<vector<int>> ans;
+        for(int i=1;i<501;++i){
+            if(v[i].size()){
+                int k = v[i].size()/(i);
+                for(int j=0;j<k;++j){
+                    vector<int>temp;
+                    for(int l=0;l<i;++l){
+                        temp.push_back(v[i][(j*i)+l]);
+                    }
+                    ans.push_back(temp);
                 }
             }
         }
