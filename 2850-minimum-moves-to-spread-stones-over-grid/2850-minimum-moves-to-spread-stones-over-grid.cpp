@@ -2,7 +2,7 @@ class Solution {
 public:
     using pii = pair<int, int>;
     vector<pii> zeros, non_one;
-    int dp[11][1069];
+    int dp[9][512];
     int N;
 
     int minimumMoves(vector<vector<int>>& grid) {
