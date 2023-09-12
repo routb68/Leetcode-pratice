@@ -4,7 +4,7 @@ public:
         int charfrq[26];
         for(int i=0;i<26;++i)charfrq[i]=0;
         for(char &x:s)++charfrq[x-'a'];
-        unordered_map<int,int>ump;
+        map<int,int>ump;
         for(int i=0;i<26;++i){
             if(charfrq[i]){
                 ++ump[charfrq[i]];
