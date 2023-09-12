@@ -14,7 +14,7 @@ public:
         for(auto [x,y]:umpod){
             // cout<<y<<" " <<x<<endl;
             pqod.push(make_pair(y,x));
-            if(pqod.size()>5){
+            if(pqod.size()>2){
                 pqod.pop();
             }
         }
@@ -22,7 +22,7 @@ public:
         for(auto [x,y]:umpev){
             // cout<<y<<" " <<x<<endl;
             pqev.push(make_pair(y,x));
-            if(pqev.size()>5){
+            if(pqev.size()>2){
                 pqev.pop();
             }
         }
