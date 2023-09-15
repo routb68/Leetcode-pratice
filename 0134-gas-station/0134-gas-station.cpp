@@ -1,12 +1,12 @@
 class Solution {
 public:
-    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        if(accumulate(begin(gas),end(gas),0)<accumulate(begin(cost),end(cost),0))
+    int canCompleteCircuit(vector<int>& gs, vector<int>& cs) {
+        if(accumulate(begin(gs),end(gs),0ll)<accumulate(begin(cs),end(cs),0ll))
             return -1;
         int ans =0;
         int temp=0;
-        for(int i=0;i<gas.size();++i){
-            temp+=(gas[i]-cost[i]);
+        for(int i=0;i<cs.size();++i){
+            temp+= (-cs[i]+gs[i]);
             if(temp<0){
                 ans=i+1;
                 temp=0;
