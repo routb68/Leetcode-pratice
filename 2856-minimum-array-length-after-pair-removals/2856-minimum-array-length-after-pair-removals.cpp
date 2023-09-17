@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minLengthAfterRemovals(vector<int>& nums) {
-        unordered_map<int,int>ump;
+        map<int,int>ump;
         for(int &x:nums)++ump[x];
         int cnt =0;
         for (auto [x,y]:ump)cnt =max(cnt,y);
