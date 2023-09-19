@@ -10,7 +10,7 @@ public:
         stack<int>s;
         for(int i=n-1;i>=0;--i){
             while(s.size() and s.top()<nums[i]){
-                if(s.top()>min_ele[i]){
+                if(min_ele[i]<s.top()){
                     return true;
                 }
                 s.pop();
