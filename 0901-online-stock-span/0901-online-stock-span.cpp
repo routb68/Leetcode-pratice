@@ -1,21 +1,24 @@
 class StockSpanner {
 public:
-    vector<int>v;
     stack<int>s;
+    vector<int>pc;
+    
     StockSpanner() {
         
     }
     
-    int next(int pr) {
-        v.push_back(pr);
-        while(s.size() and v[s.top()]<=pr)s.pop();
-        int x = 0;
-        if(s.size()){
-            x+=(v.size()-s.top()-1);
+    int next(int p) {
+        while(s.size() and pc[s.top()]<=p ){
+               s.pop();
+         }
+        int x ;
+        if(s.size()>0){
+            x= pc.size()-s.top();
         }else{
-            x+=v.size();
+            x= pc.size()+1;
         }
-        s.push(v.size()-1);
+        pc.push_back(p);
+        s.push(pc.size()-1);
         return x;
     }
 };
@@ -25,3 +28,21 @@ public:
  * StockSpanner* obj = new StockSpanner();
  * int param_1 = obj->next(price);
  */
+
+// stack<int>s;
+//        vector<int>ans;
+//        s.push(0);
+//        ans.push_back(1);
+//        for(int i=1;i<n;++i){
+//            while(s.size() and pc[s.top()]<=pc[i] ){
+//                s.pop();
+//            }
+//            if(s.size()==0){
+//                ans.push_back(i+1);
+//                s.push(i);
+//            }else{
+//                ans.push_back(i-s.top());
+//                s.push(i);
+//            }
+//        }
+//        return ans;
