@@ -1,21 +1,33 @@
 class Solution {
 public:
-    int evalRPN(vector<string>& tokens) {
-    stack<int64_t> stn;
-    for(auto s:tokens) {
-        if(s.size()>1 || isdigit(s[0])) stn.push(stoi(s));
-        else {
-            auto x2=stn.top(); stn.pop();
-            auto x1=stn.top(); stn.pop();
-            switch(s[0]) {
-                case '+': x1+=x2; break;
-                case '-': x1-=x2; break;
-                case '*': x1*=x2; break;
-                case '/': x1/=x2; break;
+    int evalRPN(vector<string>& tks) {
+        stack<string>s;
+        int ans;
+        for(int i=0;i<tks.size();++i){
+            if(tks[i]=="+"){
+                int a = stoi(s.top());s.pop();
+                int b = stoi(s.top());s.pop();
+                // cout<<a+b<<endl;
+                s.push(to_string(a+b));
+            }else if (tks[i]=="-"){
+                int a = stoi(s.top());s.pop();
+                int b = stoi(s.top());s.pop();
+                // cout<<a-b<<endl;
+                s.push(to_string(b-a));
+            }else if(tks[i]=="*"){
+                int a = stoi(s.top());s.pop();
+                int b = stoi(s.top());s.pop();
+                // cout<<a*b<<endl;
+                s.push(to_string(a*b));
+            }else if(tks[i]=="/"){
+                int a = stoi(s.top());s.pop();
+                int b = stoi(s.top());s.pop();
+                // cout<<b/a<<endl;
+                s.push(to_string(b/a));
+            }else {
+                s.push(tks[i]);
             }
-            stn.push(x1);
         }
+        return stoi(s.top());
     }
-    return stn.top();
-}
 };
