@@ -24,7 +24,7 @@ public:
     
     
     int go(string &s,int len){
-        if(len>20) return 0;
+        // if(len>20) return 0;
         if(ump.find(s)!=ump.end()) return ump[s];
         int cnt =0;
         for(int i=0;i<v[len].size();++i){
