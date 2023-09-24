@@ -7,9 +7,13 @@ public:
         for(int &x:nums)dp[x]+=x;
         int dp1[10001];
         dp1[0]=0,dp1[1]=max(dp[0],dp[1]);
+        int ans =0;
         for(int i=2;i<10001;++i){
-            dp1[i]=max(dp[i]+dp1[i-2],dp1[i-1]);
+           if(i==2)dp1[i]=dp1[i-2];
+            else dp1[i] = max(dp1[i-3],dp1[i-2]);
+            dp1[i]+=dp[i];
+            ans =max(ans,dp1[i]);
         }
-        return dp1[10000];
+        return ans;
     }
 };
