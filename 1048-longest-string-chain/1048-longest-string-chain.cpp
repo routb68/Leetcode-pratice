@@ -41,10 +41,12 @@ public:
             v[wds[i].size()].push_back(wds[i]);
         }
         int ans =0;
-        for(int i=0;i<wds.size();++i){
-            if(ump.find(wds[i])!=ump.end())continue;
-            int x = go(wds[i],wds[i].size()+1);
-            ans = max(ans,x);
+        for(int i=0;i<20;++i){
+            for(int j=0;j<v[i].size();++j){
+                if(ump.find(v[i][j])!=ump.end()) continue;
+                int x = go(v[i][j],i+1);
+                ans = max(ans, x );
+            }
         }
         return ans;
     }
