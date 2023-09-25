@@ -1,11 +1,9 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        sort(begin(s),end(s));
-        sort(begin(t),end(t));
-        for(int i=0;i<s.size();++i){
-            if(s[i]!=t[i]) return t[i];
-        }
-        return t[t.size()-1];
+        int x =0;
+        for(auto &a:s) x^=a;
+        for(auto &b:t) x^=b;
+        return x;
     }
 };
