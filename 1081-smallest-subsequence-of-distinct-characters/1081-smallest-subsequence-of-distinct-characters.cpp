@@ -1,30 +1,29 @@
 class Solution {
 public:
-    string go(string &s,int pos,vector<bool>&v){
-        if(pos==s.size()){
-            return "";
+    string go(string s,int idx,bool *vis){
+        if(idx==s.size()) return "";
+        int frq[26];
+        for(int i=0;i<26;++i)frq[i]=0;
+        for(int i=idx;i<s.size();++i){
+            if(vis[s[i]-'a'])continue;
+            ++frq[s[i]-'a'];
         }
-        int x =pos;
-        int char_fr[26];
-        for(int i=0;i<26;++i)char_fr[i]=0;
-        for(int i=pos;i<s.size();++i){
-            if(v[s[i]-'a'])continue;
-            ++char_fr[s[i]-'a'];
-        }
-        for(int i=pos;i<s.size();++i){
-            if(v[s[i]-'a'])continue;
+        int x=idx ;
+        for(int i=idx;i<s.size();++i){
+            if(vis[s[i]-'a'])continue;
             if(s[i]<s[x])x=i;
-            --char_fr[s[i]-'a'];
-            if(char_fr[s[i]-'a']==0)break;
+            --frq[s[i]-'a'];
+            if(frq[s[i]-'a']==0) break;
         }
-        if(v[s[x]-'a']) return go(s,x+1,v);
-        v[s[x]-'a']=true;
-        return s[x]+go(s,x+1,v);
+        if(vis[s[x]-'a']==true) return go(s,x+1,vis);
+        vis[s[x]-'a']=1;
+        return s[x]+go(s,x+1,vis);
     }
     string smallestSubsequence(string s) {
-        vector<bool>v(26);
-        for(int i=0;i<26;++i)v[i]=false;
-        return go(s,0,v);
+        bool vis[26];
+        for(int i=0;i<26;++i){
+            vis[i]=false;
+        }
+        return go(s,0,vis);
     }
 };
-
