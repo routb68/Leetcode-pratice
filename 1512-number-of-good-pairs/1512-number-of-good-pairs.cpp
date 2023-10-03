@@ -1,7 +1,7 @@
 class Solution {
 public:
     int numIdenticalPairs(vector<int>& nums) {
-        vector<int> frq(101);
+        int frq[101] {0};
         for(int &x:nums){
             ++frq[x];
         }
