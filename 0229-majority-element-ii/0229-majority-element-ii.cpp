@@ -16,7 +16,7 @@ public:
         }
         vector<int>ans;
         if(cnt1>nums.size()/3)ans.push_back(a1);
-        if(cnt2>nums.size()/3 and a1!=a2)ans.push_back(a2);
+        if(cnt2>nums.size()/3)ans.push_back(a2);
         return ans;
     }
 };
