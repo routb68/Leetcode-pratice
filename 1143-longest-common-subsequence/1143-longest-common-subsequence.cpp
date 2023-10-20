@@ -1,20 +1,15 @@
 class Solution {
 public:
-    int longestCommonSubsequence(string s1, string s2) {
-        int dp[1001][1001];
-        for(int i=0;i<1001;++i)dp[i][0]=0;
-        for(int j=0;j<1001;++j)dp[0][j]=0;
-        for(int i=1;i<=s1.size();++i){
-            for(int j=1;j<=s2.size();++j){
-                if(s1[i-1]==s2[j-1]){
-                    dp[i][j]=1+dp[i-1][j-1];
-                }else{
-                    dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
-                }
-                // cout <<dp[i][j]<<" ";
-            }
-            // cout<<endl;
-        }
-        return dp[s1.size()][s2.size()];
+    int dp[1001][1001];
+    int go(string &s1,string &s2,int a,int b){
+        if(dp[a][b]!=-1) return dp[a][b];
+        int &ans = dp[a][b];
+        if(a==0 or b==0) return dp[a][b] =0;
+        if(s1[a-1]==s2[b-1]) return dp[a][b]=1+go(s1,s2,a-1,b-1);
+        return dp[a][b] = max(go(s1,s2,a,b-1),go(s1,s2,a-1,b));
+    }
+    int longestCommonSubsequence(string text1, string text2) {
+        memset(dp,-1,sizeof(dp));
+        return go(text1,text2,text1.size(),text2.size());
     }
 };
