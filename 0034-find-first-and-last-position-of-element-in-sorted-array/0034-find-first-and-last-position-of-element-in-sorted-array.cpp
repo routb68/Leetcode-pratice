@@ -1,40 +1,39 @@
 class Solution {
 public:
-    vector<int> searchRange(vector<int>& nums, int tar) {
+    int fst_idx(vector<int>&nums,int target){
+        int lo = 0,hi = nums.size()-1;
+        int ans = -1;
+        while(lo<=hi){
+            int mid = lo + (hi-lo)/2;
+            if(nums[mid]>target){
+                hi = mid-1;
+            }else{
+                ans = mid;
+                lo = mid+1;
+            }
+        }
+        if(ans !=-1 and nums[ans]==target) return ans;
+        return -1;
+    }
+    int  last_idx(vector<int>&nums,int target){
+        int lo =0,hi = nums.size()-1;
+        int ans =-1;
+        while(lo<=hi){
+            int mid = lo + (hi-lo)/2;
+            if(nums[mid]>=target){
+                ans = mid;
+                hi = mid-1;
+            }else{
+                lo = mid+1;
+            }
+        }
+        if(ans !=-1 and nums[ans]==target) return ans ;
+        return -1;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
         vector<int>ans;
-        if(nums.size()==0){
-            ans.push_back(-1);
-            ans.push_back(-1);
-            return ans;
-        }
-        int res = -1;
-        int lo = 0, hi = nums.size()-1;
-        while(lo<=hi){
-            int mid = lo + (hi-lo)/2;
-            if(nums[mid]<tar){
-                lo = mid +1;
-            }else{
-                res = mid;
-                hi = mid-1;
-            }
-        }
-        if(res == nums.size() or res ==-1  or nums[res]!=tar){
-            ans.push_back(-1);
-            ans.push_back(-1);
-            return ans;
-        }
-        ans .push_back(res);
-        lo = 0, hi = nums.size()-1;
-        while(lo<=hi){
-            int mid = lo + (hi-lo)/2;
-            if(nums[mid]<=tar){
-                res = mid;
-                lo = mid +1;
-            }else{
-                hi = mid-1;
-            }
-        }
-        ans.push_back(res);
+        ans.push_back(last_idx(nums,target));
+        ans.push_back(fst_idx(nums,target));
         return ans;
     }
 };
