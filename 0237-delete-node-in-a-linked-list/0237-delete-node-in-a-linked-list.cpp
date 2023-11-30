@@ -13,6 +13,6 @@ public:
         ListNode *temp = node->next;
         node->next= temp->next;
         node->val=x;
-        delete(temp);
+        // delete(temp);
     }
 };
